@@ -1,6 +1,9 @@
 package com.example.demo.user;
 
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyProperties.AssertingParty.Verification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +44,28 @@ public class UserServiceImpl implements UserService {
 
         // save verification to database
         verificationTokenRepository.save(verificationToken);
+    }
+
+    @Override
+    public String validateVerificationToken(String token) {
+        VerificationToken verificationToken = verificationTokenRepository.findByToken(token);
+
+        if (verificationToken == null) {
+            return "invalid";
+        }
+        
+        User user = verificationToken.getUser();
+        Calendar cal = Calendar.getInstance();
+
+        if ((verificationToken.getExpirationTime().getTime() - cal.getTime().getTime()) <= 0) {
+            verificationTokenRepository.delete(verificationToken);
+            return "expired";
+        }
+
+        user.setEnabled(true);
+        userRepository.save(user);
+
+        return "valid";
     }
     
 }
