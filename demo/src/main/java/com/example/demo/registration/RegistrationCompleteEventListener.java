@@ -12,7 +12,7 @@ import com.example.demo.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
-@Slf4j // used to log verification 'email' to console, reimplement with email
+@Slf4j // used to log verification 'email' to console, reimplement with email, to remove
 public class RegistrationCompleteEventListener implements ApplicationListener<RegistrationCompleteEvent> {
 
     @Autowired
@@ -25,10 +25,10 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
         String token = UUID.randomUUID().toString();
         userService.saveVerificationTokenForUser(token, user);
 
-        // send mail to user
+        // send email to user
         String url = event.getApplicationUrl() + "/verifyRegistration?token=" + token;
         // ideally this is where we send the email, 'sendVerificationEmail()'
-        log.info("Click the link to verify your account{}", url); // to reimplement with email instead of logging jsut to console
+        log.info("Click the link to verify your account {}", url); // to reimplement with email instead of logging just to console
     }
 
     
