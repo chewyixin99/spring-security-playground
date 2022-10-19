@@ -4,12 +4,14 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.stereotype.Component;
 
 import com.example.demo.models.User;
 import com.example.demo.user.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
+@Component
 @Slf4j // used to log verification 'email' to console, reimplement with email
 public class RegistrationCompleteEventListener implements ApplicationListener<RegistrationCompleteEvent> {
 
