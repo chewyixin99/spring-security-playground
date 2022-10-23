@@ -1,7 +1,19 @@
 ### Playground to implement spring security
 
-- `$ cd demo`
-- `$ mvn spring-boot:run`
+- Client app
+
+  - `$ cd demo`
+  - `$ mvn spring-boot:run`
+
+- Authorization server app
+
+  - `$ cd oauth-authorization-server`
+  - `$ mvn spring-boot:run`
+
+- Resource server app
+
+  - `$ cd oauth-resource-server`
+  - `$ mvn spring-boot:run`
 
 ### To edit host files to enable connection to 'auth-server'
 
