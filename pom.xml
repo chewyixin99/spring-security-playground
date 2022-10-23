@@ -15,7 +15,6 @@
 
     <modules>
         <module>demo</module>
-        <!-- <module>oauth-authorization-server</module> -->
         <module>jwt-demo</module>
     </modules>
 
